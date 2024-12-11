@@ -1,0 +1,2 @@
+apiServerAddress: http://localhost:8081
+namespace: moai-3
