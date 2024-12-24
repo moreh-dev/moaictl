@@ -31,6 +31,7 @@ func Execute() {
 func init() {
 	config.InitConfig()
 
+	rootCmd.AddCommand(loginCmd)
 	rootCmd.AddCommand(addCmd)
 	rootCmd.AddCommand(getCmd)
 	rootCmd.AddCommand(updateCmd)

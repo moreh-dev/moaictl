@@ -14,7 +14,7 @@ const (
 
 type RootConfig struct {
 	APIServerAddress string `yaml:"apiServerAddress"`
-	Namespace        string `yaml:"namespace"`
+	TokenPath        string `yaml:"tokenPath"`
 }
 
 var Config RootConfig

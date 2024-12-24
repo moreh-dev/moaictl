@@ -20,6 +20,8 @@ To set up and use moaictl, follow these steps:
 
 ## Usage
 
+Need to export ENV_MOAICTL_ROOT to your project directory.
+
 To explore available commands and usage options, run:
 
 ```moaictl -h```
