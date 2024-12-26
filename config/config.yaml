@@ -1,1 +1,2 @@
-apiServerAddress: http://localhost:8081
+apiServerAddress: http://localhost:8082
+tokenPath: ""

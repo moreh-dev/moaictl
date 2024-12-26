@@ -3,6 +3,7 @@ package schedulerinfo
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	"net/http"
 
 	"moaictl/pkg/common/client"
 	. "moaictl/pkg/common/config"
@@ -41,9 +42,11 @@ func getSchedulerInfo() error {
 		url += URLSeperator + siName
 	}
 
-	resp, err := client.RequestGet(url)
+	resp, err := client.RequestDo(http.MethodGet, url, nil)
 	if err != nil {
 		return err
+	} else if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("unexpected status code: %d", resp.StatusCode)
 	}
 	defer client.CloseResponseBody(resp)
 

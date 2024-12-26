@@ -373,7 +373,7 @@ func PrintMafVersionK8sStyle(data io.ReadCloser) error {
 	writer := tabwriter.NewWriter(os.Stdout, 10, 0, 2, ' ', 0)
 	defer writer.Flush()
 
-	fmt.Fprintln(writer, "TAG\tENABLED\tLATEST")
+	fmt.Fprintln(writer, "TAG\tIMAGE\tENABLED\tLATEST")
 
 	printMafVersion(writer, mafVersionItem)
 

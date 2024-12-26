@@ -7,6 +7,7 @@ import (
 	. "moaictl/pkg/common/config"
 	. "moaictl/pkg/common/constants"
 	. "moaictl/pkg/common/utils"
+	"net/http"
 )
 
 // GetMafVersionCmd represents the "get accl history" command
@@ -35,9 +36,11 @@ func getMafVersion() error {
 		url += URLSeperator + tag
 	}
 
-	resp, err := client.RequestGet(url)
+	resp, err := client.RequestDo(http.MethodGet, url, nil)
 	if err != nil {
 		return err
+	} else if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("unexpected status code: %d", resp.StatusCode)
 	}
 	defer client.CloseResponseBody(resp)
 

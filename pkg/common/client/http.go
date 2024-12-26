@@ -17,23 +17,11 @@ func RequestDo(method, url string, body io.Reader) (*http.Response, error) {
 	}
 
 	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set(http.CanonicalHeaderKey("Authorization"), GetToken())
 
 	resp, err := GetHttpClient().Do(req)
 	if err != nil {
 		return nil, err
-	}
-
-	return resp, nil
-}
-
-func RequestGet(url string) (*http.Response, error) {
-	resp, err := http.Get(url)
-	if err != nil {
-		return nil, err
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("unexpected status code: %d", resp.StatusCode)
 	}
 
 	return resp, nil

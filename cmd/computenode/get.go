@@ -6,6 +6,7 @@ import (
 	"moaictl/cmd/computenode/devicefailurehistory"
 	"moaictl/cmd/computenode/nodefailurehistory"
 	"moaictl/pkg/common/client"
+	"net/http"
 
 	. "moaictl/pkg/common/config"
 	. "moaictl/pkg/common/constants"
@@ -42,9 +43,11 @@ func getCpn() error {
 		url += URLPartitionName + URLSeperator + cpnName
 	}
 
-	resp, err := client.RequestGet(url)
+	resp, err := client.RequestDo(http.MethodGet, url, nil)
 	if err != nil {
 		return err
+	} else if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("unexpected status code: %d", resp.StatusCode)
 	}
 	defer client.CloseResponseBody(resp)
 
