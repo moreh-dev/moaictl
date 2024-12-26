@@ -20,7 +20,7 @@ var loginCmd = &cobra.Command{
 }
 
 func login() error {
-	fmt.Print("Enter your MoAI token: ")
+	fmt.Print("Enter your access token: ")
 	reader := bufio.NewReader(os.Stdin)
 	token, err := reader.ReadString('\n')
 	if err != nil {

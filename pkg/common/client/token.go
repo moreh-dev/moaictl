@@ -10,7 +10,6 @@ import (
 // TODO: This code came from moai-smi, need to refactor into one pkg
 
 const (
-	TokenPath string = "/Users/hojinchoi/moai/token"
 	TokenType string = "Bearer"
 )
 
@@ -44,7 +43,7 @@ func SaveToken(token string) error {
 }
 
 func GetToken() string {
-	buf := make([]byte, 8192)
+	buf := make([]byte, 8192) // default http header size
 	f, err := openFile(Config.TokenPath, false)
 	checkError(err)
 
