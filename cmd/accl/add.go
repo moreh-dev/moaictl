@@ -23,17 +23,12 @@ var AddAcclCmd = &cobra.Command{
 	Short: "Add an accl resource",
 	Long:  `Add an accl resource. Either flavor or device count must be provided.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) > 0 {
-			acclName = args[0]
-		}
-
 		if err := addAccl(); err != nil {
 			fmt.Println(err)
 		} else {
-			fmt.Printf("\nAccelerator \"%s\" added\n", acclName)
+			fmt.Printf("\nAccelerator added\n")
 		}
 	},
-	Args: cobra.ExactArgs(1),
 }
 
 func init() {
@@ -54,14 +49,9 @@ func init() {
 }
 
 func addAccl() error {
-	if acclName == "" {
-		return fmt.Errorf("resource(s) were provided, but no name was specified")
-	}
-
 	url := Config.APIServerAddress + URLVersionV1 + URLPartitionAccelerator
 
 	payload := utils.AcclItem{
-		Name:                acclName,
 		FlavorName:          flavorName,
 		MafVersion:          mafVersion,
 		SchedulingGroupName: schedulingGroupName,
